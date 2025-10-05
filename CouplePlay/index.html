@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CouplePlay 🎲</title>
+  <meta name="theme-color" content="#111827">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="bg-glow" aria-hidden="true">
+    <div class="glow pink"></div>
+    <div class="glow purple"></div>
+  </div>
+  <header>
+    <h1>CouplePlay <span class="muted">cho 2 người</span></h1>
+    <button id="installBtn" hidden>Cài lên màn hình chính</button>
+  </header>
+
+  <main>
+    <section class="controls">
+      <div class="filters">
+        <label><input type="checkbox" class="deckToggle" data-deck="place" checked> Nơi</label>
+        <label><input type="checkbox" class="deckToggle" data-deck="position" checked> Động tác</label>
+        <label><input type="checkbox" class="deckToggle" data-deck="outfit" checked> Trang phục</label>
+        <label><input type="checkbox" class="deckToggle" data-deck="challenge" checked> Thử thách</label>
+      </div>
+      <div class="intensity">
+        <span>Mức độ:</span>
+        <label><input type="checkbox" class="intensityToggle" value="Dịu" checked> Dịu</label>
+        <label><input type="checkbox" class="intensityToggle" value="Vừa" checked> Vừa</label>
+        <label><input type="checkbox" class="intensityToggle" value="Bốc 🔥" checked> Bốc 🔥</label>
+      </div>
+      <div class="safe-word">
+        <label>Safe word: <input id="safeWord" placeholder="Đổi món!"></label>
+      </div>
+      <div class="actions">
+        <button id="spinBtn">🎡 Vòng quay</button>
+        <button id="randomAll">🎲 Random TẤT CẢ</button>
+        <button id="editBtn">✏️ Tuỳ biến</button>
+        <button id="resetBtn">↺ Khôi phục mặc định</button>
+      </div>
+    </section>
+
+    <section id="cards" class="cards"></section>
+  
+    <dialog id="spinDialog">
+      <form method="dialog" id="spinForm">
+        <h2>Vòng quay</h2>
+        <p class="hint">Chọn bộ thẻ → Bấm "Quay" để hệ thống chọn ngẫu nhiên. Kết quả sẽ điền vào thẻ tương ứng.</p>
+        <div class="row gap">
+          <label>Bộ thẻ
+            <select id="wheelDeck">
+              <option value="place">Nơi</option>
+              <option value="position">Động tác</option>
+              <option value="outfit">Trang phục</option>
+              <option value="challenge">Thử thách</option>
+            </select>
+          </label>
+          <div class="legend"><span class="dot"></span> Mục khả dụng theo bộ lọc hiện tại</div>
+        </div>
+        <div class="wheelWrap">
+          <canvas id="wheelCanvas" width="480" height="480"></canvas>
+          <div class="pointer">▲</div>
+        </div>
+        <menu>
+          <button id="spinCancel" value="cancel">Đóng</button>
+          <button id="spinStart" value="default">Quay</button>
+        </menu>
+        <div id="spinResult" class="spinResult" hidden></div>
+      </form>
+    </dialog>
+        </main>
+        
+
+  <dialog id="editDialog">
+    <form method="dialog" id="editForm">
+      <h2>Thêm mục mới</h2>
+      <label>Bộ thẻ
+        <select id="newDeck">
+          <option value="place">Nơi</option>
+          <option value="position">Động tác</option>
+          <option value="outfit">Trang phục</option>
+          <option value="challenge">Thử thách</option>
+        </select>
+      </label>
+      <label>Mức độ
+        <select id="newIntensity">
+          <option>Dịu</option>
+          <option>Vừa</option>
+          <option>Bốc 🔥</option>
+        </select>
+      </label>
+      <label>Nội dung
+        <input id="newText" placeholder="Nội dung ngắn gọn" required>
+      </label>
+      <label id="durationWrap" style="display:none;">Thời lượng (giây)
+        <input id="newDuration" type="number" min="0" step="30" placeholder="tuỳ chọn">
+      </label>
+      <menu>
+        <button value="cancel">Huỷ</button>
+        <button id="addItem" value="default">Thêm</button>
+      </menu>
+
+      <h3>Danh sách hiện có</h3>
+      <div id="listContainer"></div>
+    </form>
+  </dialog>
+
+  <footer>
+    <small>Lưu ý: tôn trọng ranh giới, dừng khi một người nói dừng. Tránh nơi công cộng/không an toàn. Vệ sinh & chống trơn trượt; dùng bảo hộ khi cần.</small>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
