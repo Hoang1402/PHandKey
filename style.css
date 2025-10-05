@@ -148,3 +148,16 @@ input[type="checkbox"]:checked::after{
 .legend .dot{ width:10px; height:10px; border-radius:50%; background: linear-gradient(180deg, #ff2d8a, #ff5bb3); box-shadow: 0 0 10px rgba(255,45,138,.8); display:inline-block }
 .row.gap{ display:flex; gap:12px; align-items:center; justify-content:space-between; flex-wrap:wrap }
 .spinResult{ margin-top:8px; font-size:16px; color:#ffd3ea; padding:10px 12px; border-radius:12px; border:1px solid rgba(255,255,255,.12); background:linear-gradient(180deg, rgba(255,45,138,.18), rgba(106,0,255,.12)); box-shadow: inset 0 1px 0 rgba(255,255,255,.08); }
+/* ---- dialog close button ---- */
+.dialog-close{
+  position:absolute; top:10px; right:10px;
+  border:1px solid rgba(255,255,255,.18);
+  background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+  border-radius:10px; width:36px; height:36px; line-height:36px; text-align:center;
+  cursor:pointer; font-size:16px; color:#fff; 
+  box-shadow: 0 6px 18px rgba(0,0,0,.35);
+}
+.dialog-close:hover{
+  border-color:rgba(255,45,138,.4);
+  box-shadow: 0 10px 28px rgba(255,45,138,.25), 0 6px 16px rgba(0,0,0,.6);
+}
