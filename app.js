@@ -51,7 +51,10 @@ const el = {
   wheelDeck: document.getElementById('wheelDeck'),
   spinStart: document.getElementById('spinStart'),
   spinCancel: document.getElementById('spinCancel'),
-  spinResult: document.getElementById('spinResult')
+  spinResult: document.getElementById('spinResult'),
+  editDialog: document.getElementById('editDialog'),
+  editDialogClose: document.getElementById('editDialogClose'),
+
 };
 
 let state = {
@@ -216,6 +219,23 @@ el.installBtn.addEventListener('click', async () => {
 // ----- Events
 function initEvents() {
   el.randomAll.addEventListener('click', () => { el.randomAll.classList.add('spinning'); setTimeout(()=>{ renderCards({}); el.randomAll.classList.remove('spinning'); }, 350); });
+    // Đóng dialog khi bấm ✕
+  el.editDialogClose.addEventListener('click', () => {
+    el.editDialog.close();
+  });
+
+  // Bấm vào nền tối (backdrop) cũng đóng
+  el.editDialog.addEventListener('click', (ev) => {
+    const form = document.getElementById('editForm');
+    const rect = form.getBoundingClientRect();
+    const outside = ev.clientX < rect.left || ev.clientX > rect.right || ev.clientY < rect.top || ev.clientY > rect.bottom;
+    if (outside) el.editDialog.close();
+  });
+
+  // Esc để đóng (đảm bảo hoạt động trên mọi trình duyệt)
+  el.editDialog.addEventListener('keydown', (ev) => {
+    if (ev.key === 'Escape') el.editDialog.close();
+  });
 
   el.deckToggles.forEach(tg => {
     tg.addEventListener('change', () => {
